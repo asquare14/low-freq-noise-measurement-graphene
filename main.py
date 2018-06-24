@@ -16,5 +16,11 @@ f = open('yaxis.txt','w+')
 f.write(n)
 f.close()
 
-#print(inst.query('BVAL?0,0\n'))
-#print(inst.query('CURV?0\n'))
+f2 = open("xaxis.txt","w+")
+for i in range(399):
+    f2.write(inst.query('BVAL?0,'+str(i)+'\n'))
+f2.close()
+
+
+#set frequency range
+
