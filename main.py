@@ -1,6 +1,6 @@
 #import visa
 import csv
-
+import re
 #rm = visa.ResourceManager()
 #inst = rm.open_resource('GPIB0::10::INSTR')
 
@@ -27,7 +27,20 @@ def measure():
     f2.close()
 
 def convert_to_csv():
-    
+
+        myData = [["yaxis", "xaxis"]]
+        fy = open("yaxis.txt","r")
+        fx = open("xaxis.txt","r")
+        y = fy.read()
+        x = fx.read()
+
+        myData.append([y,x])
+        myFile = open('example2.csv', 'w')
+
+        with myFile:
+            writer = csv.writer(myFile)
+            writer.writerows(myData)
+
 
 if __name__ == '__main__':
     convert_to_csv()
