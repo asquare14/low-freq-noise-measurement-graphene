@@ -27,7 +27,6 @@ def measure():
     f2.close()
 
 def convert_to_csv():
-
         f = open('yaxis.txt', 'r+')
         n = f.read().replace(',','')
         f.truncate(0)
