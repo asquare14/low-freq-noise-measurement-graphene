@@ -3,13 +3,18 @@ from tkinter import *
 import visa
 import csv
 import re
+import applyv_2400
+import injecti_2400
 
 rm = visa.ResourceManager()
 inst = rm.open_resource('GPIB0::10::INSTR')
 
-start_freq = 0 #set start frequency
-centre_freq= 5 #set centre frequency
-span = 10
+span = 9
+start_freq = 1000 #set start frequency
+#centre_freq= 5 #set centre frequency
+
+
+#rst,meas,setfreq,strt,stp,daq
 
 def identify_instrument():
     inst_details = inst.query('*IDN?\n')
@@ -18,11 +23,16 @@ def identify_instrument():
 
 def start_srs():
     inst.write("*RST\n")
+    inst.write("MEAS 0,0\n")
+    set_frequency()
     inst.write("STRT?\n")
     inst.write("STCO?\n")
-    measure()
+    
+    injecti_2400.shutdown_i()
+    applyv_2400.shutdown_v()
+    daq()
 
-def measure():
+def daq():
     f = open("yaxis.txt","w+")
     f.write(inst.query('SPEC?0\n'))
     f.close()
@@ -67,11 +77,13 @@ def convert_to_csv():
         writer.writerows(myData)
     #tkMessageBox.showinfo("Done", "Your CSV file 'Values.csv' is ready !" )
     print("Measurement is done ! Check your CSV file.")
+    
 
 def set_frequency():
-    inst.write('STRF'+ str(start_freq) + '\n')
-    inst.write('CTRF'+ str(centre_freq) + '\n')
-    inst.write('SPAN'+ str(span) + '\n')
+     inst.write('SPAN '+ str(span) + '\n')
+     inst.write('STRF '+ str(start_freq) + '\n')
+     #inst.write('CTRF '+ str(centre_freq) + '\n')
+
 
 def show_frequency():
     print("Start Fr, Centre Fr, Span is:\n")
