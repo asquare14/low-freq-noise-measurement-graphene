@@ -7,6 +7,10 @@ import re
 rm = visa.ResourceManager()
 inst = rm.open_resource('GPIB0::10::INSTR')
 
+start_freq = 0 #set start frequency
+centre_freq= 5 #set centre frequency
+span = 10
+
 def identify_instrument():
     inst_details = inst.query('*IDN?\n')
     #tkMessageBox.showinfo("Instrument Details", inst_details )
@@ -63,3 +67,14 @@ def convert_to_csv():
         writer.writerows(myData)
     #tkMessageBox.showinfo("Done", "Your CSV file 'Values.csv' is ready !" )
     print("Measurement is done ! Check your CSV file.")
+
+def set_frequency():
+    inst.write('STRF'+ str(start_freq) + '\n')
+    inst.write('CTRF'+ str(centre_freq) + '\n')
+    inst.write('SPAN'+ str(span) + '\n')
+
+def show_frequency():
+    print("Start Fr, Centre Fr, Span is:\n")
+    print(inst.write('STRF?\n'))
+    print(inst.write('CTRF?\n'))
+    print(inst.write('SPAN?\n'))
