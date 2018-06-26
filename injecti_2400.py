@@ -7,6 +7,7 @@ keithley = Keithley2400("GPIB::26")
 current = 1E-6 #set the value of current you want to inject
 compliance_voltage = 2 #set compliance voltage
 
+
 def inject_i():
     keithley.reset()
     keithley.use_front_terminals()
@@ -17,5 +18,7 @@ def inject_i():
     keithley.source_current = current
     voltage = keithley.voltage
     sleep(2)
+    srs760.start_srs()
+
+def shutdown_i():
     keithley.shutdown()
-    srs760.start()
