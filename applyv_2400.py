@@ -7,8 +7,7 @@ keithley = Keithley2400("GPIB::26") #change the address here
 voltage = 1  #set the value of voltage you want to apply
 compliance_current = 1E-4 #set compliance current
 
-
-def applyv()
+def applyv():
     keithley.reset()
     keithley.use_front_terminals()
     keithley.apply_voltage()
