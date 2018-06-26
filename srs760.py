@@ -13,9 +13,6 @@ span = 9
 start_freq = 1000 #set start frequency
 #centre_freq= 5 #set centre frequency
 
-
-#rst,meas,setfreq,strt,stp,daq
-
 def identify_instrument():
     inst_details = inst.query('*IDN?\n')
     #tkMessageBox.showinfo("Instrument Details", inst_details )
@@ -27,7 +24,7 @@ def start_srs():
     set_frequency()
     inst.write("STRT?\n")
     inst.write("STCO?\n")
-    
+
     injecti_2400.shutdown_i()
     applyv_2400.shutdown_v()
     daq()
@@ -77,13 +74,11 @@ def convert_to_csv():
         writer.writerows(myData)
     #tkMessageBox.showinfo("Done", "Your CSV file 'Values.csv' is ready !" )
     print("Measurement is done ! Check your CSV file.")
-    
 
 def set_frequency():
      inst.write('SPAN '+ str(span) + '\n')
      inst.write('STRF '+ str(start_freq) + '\n')
      #inst.write('CTRF '+ str(centre_freq) + '\n')
-
 
 def show_frequency():
     print("Start Fr, Centre Fr, Span is:\n")
