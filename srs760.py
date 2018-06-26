@@ -1,5 +1,5 @@
-from Tkinter import *
-import tkMessageBox
+from tkinter import *
+#import tkMessageBox
 import visa
 import csv
 import re
@@ -9,7 +9,14 @@ inst = rm.open_resource('GPIB0::10::INSTR')
 
 def identify_instrument():
     inst_details = inst.query('*IDN?\n')
-    tkMessageBox.showinfo("Instrument Details", inst_details )
+    #tkMessageBox.showinfo("Instrument Details", inst_details )
+    print(inst_details)
+
+def start_srs():
+    inst.write("*RST\n")
+    inst.write("STRT?\n")
+    inst.write("STCO?\n")
+    measure()
 
 def measure():
     f = open("yaxis.txt","w+")
@@ -54,4 +61,5 @@ def convert_to_csv():
     with myFile:
         writer = csv.writer(myFile)
         writer.writerows(myData)
-    tkMessageBox.showinfo("Done", "Your CSV file 'Values.csv' is ready !" )
+    #tkMessageBox.showinfo("Done", "Your CSV file 'Values.csv' is ready !" )
+    print("Measurement is done ! Check your CSV file.")
