@@ -32,26 +32,26 @@ def measure():
     convert_to_csv()
 
 def convert_to_csv():
-        f = open('yaxis.txt', 'r+')
-        n = f.read().replace(',','')
-        f.truncate(0)
-        f.close()
+    f = open('yaxis.txt', 'r+')
+    n = f.read().replace(',','')
+    f.truncate(0)
+    f.close()
 
-        f = open('yaxis.txt','w+')
-        f.write(n)
-        f.close()
+    f = open('yaxis.txt','w+')
+    f.write(n)
+    f.close()
 
-        myData = [["yaxis", "xaxis"]]
-        fy = open("yaxis.txt","r")
-        fx = open("xaxis.txt","r")
-        y = fy.read().splitlines()
-        x = fx.read().splitlines()
+    myData = [["yaxis", "xaxis"]]
+    fy = open("yaxis.txt","r")
+    fx = open("xaxis.txt","r")
+    y = fy.read().splitlines()
+    x = fx.read().splitlines()
 
-        for i in range(len(x)) :
-            l = [y[i],x[i]]
-            myData.append(l)
-        myFile = open('Values.csv','w')
-        with myFile:
-            writer = csv.writer(myFile)
-            writer.writerows(myData)
-        tkMessageBox.showinfo("Done", "Your CSV file 'Values.csv' is ready !" )
+    for i in range(len(x)) :
+        l = [y[i],x[i]]
+        myData.append(l)
+    myFile = open('Values.csv','w')
+    with myFile:
+        writer = csv.writer(myFile)
+        writer.writerows(myData)
+    tkMessageBox.showinfo("Done", "Your CSV file 'Values.csv' is ready !" )

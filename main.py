@@ -8,6 +8,7 @@ def main():
     frame_top.pack()
     frame_bottom = Frame(main_app)
     frame_bottom.pack(side = BOTTOM)
+
     Identify_b = Button(frame_top, text = "Identify Instrument", command = srs760.identify_instrument, bg = "ivory")
     Getdata_b = Button(frame_top, text = "Get Data", command = srs760.measure, bg = "ivory")
     Exit_b = Button(frame_bottom, text = "Close", command = main_app.destroy, bg = "ivory")
@@ -17,6 +18,7 @@ def main():
     Identify_b.pack(side = LEFT)
     Getdata_b.pack(side = LEFT)
     Exit_b.pack(side = BOTTOM)
+
     main_app.mainloop()
 
 if __name__ == '__main__':
