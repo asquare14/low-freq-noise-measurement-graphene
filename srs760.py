@@ -1,4 +1,3 @@
-from tkinter import *
 import visa
 import csv
 import re
