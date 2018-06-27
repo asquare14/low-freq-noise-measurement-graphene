@@ -9,8 +9,8 @@ import injecti_2400
 rm = visa.ResourceManager()
 inst = rm.open_resource('GPIB0::10::INSTR')
 
-span = 9
-start_freq = 1000 #set start frequency
+# span = 9
+# start_freq = 1000 #set start frequency
 #centre_freq= 5 #set centre frequency
 
 def identify_instrument():
@@ -21,13 +21,6 @@ def identify_instrument():
 def start_srs():
     inst.write("*RST\n")
     inst.write("MEAS 0,0\n")
-    set_frequency()
-    inst.write("STRT?\n")
-    inst.write("STCO?\n")
-
-    injecti_2400.shutdown_i()
-    applyv_2400.shutdown_v()
-    daq()
 
 def daq():
     f = open("yaxis.txt","w+")
@@ -75,10 +68,12 @@ def convert_to_csv():
     #tkMessageBox.showinfo("Done", "Your CSV file 'Values.csv' is ready !" )
     print("Measurement is done ! Check your CSV file.")
 
-def set_frequency():
+def set_frequency(span,start_freq):
      inst.write('SPAN '+ str(span) + '\n')
      inst.write('STRF '+ str(start_freq) + '\n')
      #inst.write('CTRF '+ str(centre_freq) + '\n')
+     inst.write("STRT?\n")
+     inst.write("STCO?\n")
 
 def show_frequency():
     print("Start Fr, Centre Fr, Span is:\n")
