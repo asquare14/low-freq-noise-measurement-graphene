@@ -14,7 +14,7 @@ def start_noise_measurements():
     print("Enter span for SRS760: \n")
     span = input()
     print("Enter start frequency of span: \n")
-    span = input()
+    start_frequency_of_span = input()
 
     apply_voltage.applyv(voltage,compliance_current)
     injecti_2400.inject_i(current,compliance_voltage)

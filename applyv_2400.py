@@ -1,11 +1,7 @@
 from time import sleep
 from pymeasure.instruments.keithley import Keithley2400
-import injecti_2400
 
-keithley = Keithley2400("GPIB::24") #change the address here
-
-# voltage = 0  #set the value of voltage you want to apply
-# compliance_current = 1E-4 #set compliance current
+keithley = Keithley2400("GPIB::24") 
 
 def applyv(voltage,compliance_current):
     keithley.reset()
@@ -16,7 +12,6 @@ def applyv(voltage,compliance_current):
     keithley.enable_source()
     keithley.source_voltage = voltage
     current = keithley.current
-    #injecti_2400.inject_i()
 
 def shutdown_v():
     keithley.shutdown()

@@ -1,21 +1,13 @@
 from tkinter import *
-#import tkMessageBox
 import visa
 import csv
 import re
-import applyv_2400
-import injecti_2400
 
 rm = visa.ResourceManager()
 inst = rm.open_resource('GPIB0::10::INSTR')
 
-# span = 9
-# start_freq = 1000 #set start frequency
-#centre_freq= 5 #set centre frequency
-
 def identify_instrument():
     inst_details = inst.query('*IDN?\n')
-    #tkMessageBox.showinfo("Instrument Details", inst_details )
     print(inst_details)
 
 def start_srs():
@@ -65,13 +57,11 @@ def convert_to_csv():
     with myFile:
         writer = csv.writer(myFile)
         writer.writerows(myData)
-    #tkMessageBox.showinfo("Done", "Your CSV file 'Values.csv' is ready !" )
     print("Measurement is done ! Check your CSV file.")
 
 def set_frequency(span,start_freq):
      inst.write('SPAN '+ str(span) + '\n')
      inst.write('STRF '+ str(start_freq) + '\n')
-     #inst.write('CTRF '+ str(centre_freq) + '\n')
      inst.write("STRT?\n")
      inst.write("STCO?\n")
 
