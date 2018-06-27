@@ -43,20 +43,20 @@ def convert_to_csv():
     f.write(n)
     f.close()
 
-    myData = [["yaxis", "xaxis"]]
+    myData = []
     fy = open("yaxis.txt","r")
     fx = open("xaxis.txt","r")
     y = fy.read().splitlines()
     x = fx.read().splitlines()
 
     for i in range(len(x)) :
-        l = [y[i],x[i]]
+        l = [x[i],y[i]]
         myData.append(l)
     myFile = open('Values.csv','w')
     with myFile:
         writer = csv.writer(myFile)
         writer.writerows(myData)
-    print("Measurement is done ! Check your CSV file.")
+    print("Measurement is done ! Check your CSV file.\nLeft column is x-axis and right is y-axis !")
 
 def set_frequency(span,start_freq):
      inst.write('SPAN '+ str(span) + '\n')
