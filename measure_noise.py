@@ -1,6 +1,7 @@
 import injecti_2400
 import applyv_2400
 import srs760
+import plotgraphs
 
 def start_noise_measurements():
     print("Enter the value of voltage that you want to apply : \n")
@@ -32,3 +33,5 @@ def start_noise_measurements():
     injecti_2400.shutdown_i()
     applyv_2400.shutdown_v()
     srs760.daq()
+    plotgraphs.plot_graph(start_frequency_of_span)
+    print("Graph has also been plotted.Click on floppy icon to save it.\n")

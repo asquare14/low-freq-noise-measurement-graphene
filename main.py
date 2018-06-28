@@ -2,7 +2,6 @@ from tkinter import *
 import measure_noise
 import measure_voltage
 import nanovoltmeter
-import plotgraphs
 
 def main():
     main_app = Tk()
@@ -13,15 +12,12 @@ def main():
     frame_bottom.pack(side = BOTTOM)
     Getnoisedata_b = Button(frame_top, text = "Start Noise Measurements", command = measure_noise.start_noise_measurements, bg = "ivory")
     Getvoltagedata_b = Button(frame_top, text = "Start Voltage Measurements", command = measure_voltage.start_voltage_measurements, bg = "ivory")
-    Plot_b = Button(frame_top, text = "Plot Graph", command = plotgraphs.plot_graph, bg = "ivory")
     Exit_b = Button(frame_bottom, text = "Close", command = main_app.destroy, bg = "ivory")
     Getnoisedata_b.flash()
     Getvoltagedata_b.flash()
-    Plot_b.flash()
     Exit_b.flash()
     Getnoisedata_b.pack(side = LEFT)
     Getvoltagedata_b.pack(side = LEFT)
-    Plot_b.pack(side = LEFT)
     Exit_b.pack(side = BOTTOM)
     main_app.mainloop()
 
