@@ -1,3 +1,3 @@
 # Low frequency noise measurement in graphene transistors
 
-Setup for low frequency noise measurement setup in graphene FETs.
+Setup for measurement of low frequency noise in graphene FETs.
