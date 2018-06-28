@@ -1,6 +1,8 @@
 from tkinter import *
 import measure_noise
+import measure_voltage
 import nanovoltmeter
+import plotgraphs
 
 def main():
     main_app = Tk()
